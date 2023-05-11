@@ -1,0 +1,28 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "my-ubuntu",
+            "source_ami": "ami-007855ac798b5175e",
+            "instance_type": "t2.nano",
+            "ssh_username": "ubuntu"
+
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "script.sh"
+        },
+        {
+            "type": "file",
+            "source": "index.html",
+            "destination": "/tmp/index.html"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo cp /tmp/index.html /var/www/html/index.html"
+        }
+    ]
+}
